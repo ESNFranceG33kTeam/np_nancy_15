@@ -8,17 +8,16 @@
 
     <ImageView
         android:id="@+id/thumb"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:contentDescription="@string/app_name" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_height="100dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@+id/arrow"
         android:layout_toRightOf="@+id/thumb"
         android:orientation="vertical" >
 
@@ -35,33 +34,17 @@
             android:id="@+id/post"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
             android:padding="2dp"
-            android:textColor="#7F7F7F"
-            android:textSize="10dp" />
+            android:textSize="14dp" />
 
         <TextView
             android:id="@+id/tel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="40dp"
             android:padding="2dp"
-            android:textColor="#7F7F7F"
-            android:textSize="10dp" />
+            android:textSize="14dp" />
     </RelativeLayout>
-
-    <ImageView
-        android:id="@+id/arrow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="5dp"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/arrow_next" />
 
 </RelativeLayout>

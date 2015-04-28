@@ -12,7 +12,7 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
     public MyFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
-        this.context = context;
+        count = 5;
     }
 
     @Override
