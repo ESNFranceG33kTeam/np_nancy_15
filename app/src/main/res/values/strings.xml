@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">NP Nancy 15</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="splashscreen_text">NP Nancy 2015</string>
 </resources>
