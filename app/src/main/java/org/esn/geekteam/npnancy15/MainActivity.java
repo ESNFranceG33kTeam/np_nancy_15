@@ -15,7 +15,8 @@ import org.esn.geekteam.npnancy15.fragments.MyFragmentPagerAdapter;
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
     private static final String TAG = ActionBarActivity.class.getSimpleName();
     private ViewPager myPager;
-    private MyFragmentPagerAdapter  myAdapter;
+    public static MyFragmentPagerAdapter myAdapter;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
