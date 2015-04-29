@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,14 +41,14 @@ public class ScheduleFragment extends android.support.v4.app.ListFragment {
     }
 
     public void initSchedule(){
-        //schedules.add("Vendredi 05 Juin");
+        schedules.add("Vendredi 05 Juin");
         schedules.add(new Schedule("Vendredi 05 Juin", "14:30", "City Tour", "Grand Place"));
         schedules.add(new Schedule("Vendredi 05 Juin", "15:30", "City Tour", "Grand Place"));
         schedules.add(new Schedule("Vendredi 05 Juin", "16:30", "City Tour", "Grand Place"));
         schedules.add(new Schedule("Vendredi 05 Juin", "17:30", "City Tour", "Grand Place"));
-        //schedules.add("Samedi 06 Juin");
+        schedules.add("Samedi 06 Juin");
         schedules.add(new Schedule("Samedi 06 Juin", "17:30", "City Tour", "Grand Place"));
-        //schedules.add("Dimanche 07 Juin");
+        schedules.add("Dimanche 07 Juin");
         schedules.add(new Schedule("Dimanche 07 Juin", "17:30", "City Tour", "Grand Place"));
         schedules.add(new Schedule("Dimanche 07 Juin", "17:30", "City Tour", "Grand Place"));
     }
@@ -94,12 +95,19 @@ public class ScheduleFragment extends android.support.v4.app.ListFragment {
 
             View listItem = convertView;
 
-            if (schedules.get(position) instanceof String) {
+            if (schedules.get(position) instanceof String)
+            {
+                Log.d(TAG, "String :" + schedules.get(position).toString());
+
                 listItem = layoutInflater.inflate(R.layout.list_header, null);
                 previousDate = schedules.get(position).toString();
-                TextView header = new TextView(getActivity());
+                TextView header = (TextView) listItem.findViewById(R.id.header);
                 header.setText(schedules.get(position).toString());
-            }else if (schedules.get(position) instanceof Schedule){
+            }
+            else if (schedules.get(position) instanceof Schedule)
+            {
+                Log.d(TAG, "Schedule :" + schedules.get(position));
+
                 listItem = layoutInflater.inflate(R.layout.list_schedule, null);
                 TextView tvHour = (TextView) listItem.findViewById(R.id.hour);
                 TextView tvTitle= (TextView) listItem.findViewById(R.id.title);
@@ -109,6 +117,7 @@ public class ScheduleFragment extends android.support.v4.app.ListFragment {
                 tvTitle.setText(((Schedule)schedules.get(position)).getTitle());
                 tvAddress.setText(((Schedule)schedules.get(position)).getAddress());
             }
+
             return listItem;
         }
     }
