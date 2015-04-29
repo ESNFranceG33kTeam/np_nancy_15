@@ -18,9 +18,11 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         OCFragment ocFragment = new OCFragment();
+        ScheduleFragment scheduleFragment = new ScheduleFragment();
+
         switch (position) {
             case 0: return ocFragment;
-            case 1: return ocFragment;
+            case 1: return scheduleFragment;
             case 2: return ocFragment;
             case 3: return ocFragment;
             case 4: return ocFragment;
