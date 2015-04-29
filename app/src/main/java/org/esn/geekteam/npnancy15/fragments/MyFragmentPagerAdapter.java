@@ -18,13 +18,15 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         OCFragment ocFragment = new OCFragment();
         ScheduleFragment scheduleFragment = new ScheduleFragment();
         MapFragment mapFragment = new MapFragment();
+        AboutFragment aboutFragment = new AboutFragment();
+        TipsFragment tipsFragment = new TipsFragment();
 
         switch (position) {
             case 0: return ocFragment;
             case 1: return scheduleFragment;
-            case 2: return ocFragment;
+            case 2: return tipsFragment;
             case 3: return mapFragment;
-            case 4: return ocFragment;
+            case 4: return aboutFragment;
             default: return ocFragment;
         }
     }

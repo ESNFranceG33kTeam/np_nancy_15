@@ -16,6 +16,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.esn.geekteam.npnancy15.R;
+import org.esn.geekteam.npnancy15.models.Place;
+
+import java.util.ArrayList;
 
 /**
  * Created by Spider on 29/04/15.
@@ -24,6 +27,7 @@ public class MapFragment extends Fragment{
 
     MapView mMapView;
     private GoogleMap googleMap;
+    private ArrayList<Place> places;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,27 +47,34 @@ public class MapFragment extends Fragment{
         }
 
         googleMap = mMapView.getMap();
-        // latitude and longitude
-        double latitude = 17.385044;
-        double longitude = 78.486671;
 
-        // create marker
-        MarkerOptions marker = new MarkerOptions().position(
-                new LatLng(latitude, longitude)).title("Hello Maps");
+        initPlaces();
 
-        // Changing marker icon
-        marker.icon(BitmapDescriptorFactory
-                .defaultMarker(BitmapDescriptorFactory.HUE_ROSE));
+        for(Place p: places){
+            // create marker
+            MarkerOptions marker = new MarkerOptions().position(
+                    new LatLng(p.getLatitude(), p.getLongitude())).title(p.getTitle());
 
-        // adding marker
-        googleMap.addMarker(marker);
+            // Changing marker icon
+            marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.esn_star));
+
+            // adding marker
+            googleMap.addMarker(marker);
+        }
+
         CameraPosition cameraPosition = new CameraPosition.Builder()
-                .target(new LatLng(17.385044, 78.486671)).zoom(12).build();
+                .target(new LatLng(48.6886759, 6.1791018)).zoom(12).build();
         googleMap.animateCamera(CameraUpdateFactory
                 .newCameraPosition(cameraPosition));
 
         // Perform any camera updates here
         return v;
+    }
+
+    public void initPlaces(){
+        places = new ArrayList<Place>();
+        places.add(new Place("Pleniere", "Placee Stanislas 54000 Nancy", "48.6886759", "6.1791018"));
+        places.add(new Place("Parc Sainte-Marie", "Avenue Boffrand 54000 Nancy", "48.6986759", "6.1791018"));
     }
 
     @Override

@@ -3,6 +3,7 @@ package org.esn.geekteam.npnancy15.fragments;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import org.esn.geekteam.npnancy15.R;
@@ -28,7 +30,6 @@ public class OCFragment extends android.support.v4.app.ListFragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
 
         OCMembers = new ArrayList<OCMember>();
         initOCMembers();
@@ -62,6 +63,17 @@ public class OCFragment extends android.support.v4.app.ListFragment {
         super.onAttach(activity);
         currentActivity = activity;
     }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int pos, long id) {
+        super.onListItemClick(l, v, pos, id);
+        if (OCMembers.get(pos).getFirstName().equalsIgnoreCase("Florent")
+                && OCMembers.get(pos).getLastName().equalsIgnoreCase("Lenoir")){
+            final MediaPlayer mp = MediaPlayer.create(getActivity(), R.raw.elephant);
+            mp.start();
+        }
+    }
+
 
     class CustomListAdapter extends BaseAdapter {
         private LayoutInflater layoutInflater;
