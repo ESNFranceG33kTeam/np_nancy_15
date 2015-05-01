@@ -78,7 +78,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnInfoWindowClick
     public void initPlaces(){
         places = new ArrayList<Place>();
         places.add(new Place("Plénières", "Faculté de droit, 13 Place Carnot", "48.6926387", "6.1771829"));
-        places.add(new Place("Hotel Ibis centre gare", "Avenue Boffrand 54000 Nancy", "48.6986759", "6.1791018"));
+        places.add(new Place("Hotel Ibis centre gare", "3 Rue Crampel", "48.6893062", "6.1736788"));
         places.add(new Place("Hotel Revotel", "41 Rue Raymond Poincaré 54000 Nancy", "48.689436", "6.1706719"));
         places.add(new Place("FrenchDinner et soirée vendredi", "Taverne de l'Irlandais, 8 rue Mazagran", "48.689676", "6.176027"));
         places.add(new Place("Restaurant samedi soir", "Les Césars, 8 place Stanislas", "48.694151", "6.183522"));
