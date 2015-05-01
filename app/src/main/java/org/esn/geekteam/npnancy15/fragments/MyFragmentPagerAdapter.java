@@ -10,7 +10,7 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
     public MyFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
-        count = 5;
+        count = 6;
     }
 
     @Override
@@ -20,6 +20,7 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         MapFragment mapFragment = new MapFragment();
         AboutFragment aboutFragment = new AboutFragment();
         TipsFragment tipsFragment = new TipsFragment();
+        AwardsFragment awardsFragment = new AwardsFragment();
 
         switch (position) {
             case 0: return ocFragment;
@@ -27,6 +28,7 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
             case 2: return tipsFragment;
             case 3: return mapFragment;
             case 4: return aboutFragment;
+            case 5: return awardsFragment;
             default: return ocFragment;
         }
     }

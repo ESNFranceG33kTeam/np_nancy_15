@@ -31,7 +31,6 @@ public class OCFragment extends android.support.v4.app.ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        OCMembers = new ArrayList<OCMember>();
         initOCMembers();
 
         // Set an Adapter to the ListView
@@ -40,6 +39,7 @@ public class OCFragment extends android.support.v4.app.ListFragment {
     }
 
     public void initOCMembers(){
+        this.OCMembers = new ArrayList<OCMember>();
         this.OCMembers.add(new OCMember("Bertrand", "Kaufmann", "0771045525", "Head of OC"));
         this.OCMembers.add(new OCMember("Alexandra", "Tistea", "0615812506", "Vice head"));
         this.OCMembers.add(new OCMember("Carole", "Eber", "0624010227", "Responsable des paiements"));
@@ -47,7 +47,7 @@ public class OCFragment extends android.support.v4.app.ListFragment {
         this.OCMembers.add(new OCMember("Mylene", "Fohrer", "0683441546", "Responsable hébergement"));
         this.OCMembers.add(new OCMember("Marion", "Rusterholtz", "0673441739", "Responsable nourriture"));
         this.OCMembers.add(new OCMember("Marion", "Geille", " 0750930624", "Responsable soirée"));
-        this.OCMembers.add(new OCMember("Florent", "Lenoir", "0613303219", "Chair"));
+        this.OCMembers.add(new OCMember("Florent", "Lenoir", "0607895144", "Chair"));
         this.OCMembers.add(new OCMember("Laura", "Mazi", "0613303219", "Vice-Chair"));
     }
 

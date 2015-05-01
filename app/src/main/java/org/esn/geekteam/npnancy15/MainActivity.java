@@ -66,6 +66,11 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         tabMap.setTabListener(this);
         getActionBar().addTab(tabMap);
 
+        ActionBar.Tab tabAward = getActionBar().newTab();
+        tabAward.setText(getResources().getString(R.string.tab_award));
+        tabAward.setTabListener(this);
+        getActionBar().addTab(tabAward);
+
         ActionBar.Tab tabAbout = getActionBar().newTab();
         tabAbout.setText(getResources().getString(R.string.tab_about));
         tabAbout.setTabListener(this);

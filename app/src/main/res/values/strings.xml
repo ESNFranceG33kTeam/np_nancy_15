@@ -9,6 +9,7 @@
     <string name="tab_schedule">Schedule</string>
     <string name="tab_tips">Tips</string>
     <string name="tab_map">Map</string>
+    <string name="tab_award">Award</string>
     <string name="tab_about">About</string>
 
     <!-- ABOUT FRAGMENT -->
