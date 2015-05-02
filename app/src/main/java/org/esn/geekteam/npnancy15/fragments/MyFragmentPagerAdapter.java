@@ -27,8 +27,8 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
             case 1: return scheduleFragment;
             case 2: return tipsFragment;
             case 3: return mapFragment;
-            case 4: return aboutFragment;
-            case 5: return awardsFragment;
+            case 4: return awardsFragment;
+            case 5: return aboutFragment;
             default: return ocFragment;
         }
     }

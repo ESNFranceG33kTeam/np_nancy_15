@@ -40,7 +40,7 @@ public class AwardsFragment extends android.support.v4.app.ListFragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.list_awards, container, false);
+        return inflater.inflate(R.layout.list_fragment, container, false);
     }
 
     class CustomListAdapter extends BaseAdapter {
