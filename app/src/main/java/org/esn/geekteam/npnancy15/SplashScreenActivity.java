@@ -1,21 +1,54 @@
 package org.esn.geekteam.npnancy15;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Spider on 28/04/15.
  */
 
 public class SplashScreenActivity extends Activity {
-    private static int SPLASH_TIME_OUT = 2500;
+    private static int SPLASH_TIME_OUT = 5000;
+    private static final String TAG = SplashScreenActivity.class.getSimpleName();
+    private Context context;
 
-    @Override
+    private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
+    private GoogleCloudMessaging gcmObj;
+    private String regId = "";
+    private static final String GOOGLE_PROJ_ID = "697246358042";
+    private static final String APP_SERVER_URL = "http://esnlille.fr/npnancy15/gcm.php";
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splashscreen);
+
+        this.context = getApplicationContext();
+
+        RegisterUser();
 
         new Handler().postDelayed(new Runnable() {
             public void run() {
@@ -25,6 +58,96 @@ public class SplashScreenActivity extends Activity {
                 finish();
             }
         }, SPLASH_TIME_OUT);
+    }
+
+    // GCM
+    public void RegisterUser() {
+        if (checkPlayServices()) {
+            Log.d(TAG, "RegisterUser : checkPlayServices OK");
+            registerInBackground();
+        }
+    }
+
+    private void registerInBackground() {
+        Log.d(TAG, "registerInBackgroud");
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... params) {
+                String msg = "";
+                try {
+                    if (gcmObj == null) {
+                        gcmObj = GoogleCloudMessaging
+                                .getInstance(context);
+                    }
+                    regId = gcmObj
+                            .register(GOOGLE_PROJ_ID);
+                    msg = "Registration ID :" + regId;
+                    Log.d(TAG, "regid : " + msg);
+                } catch (IOException ex) {
+                    msg = "Error :" + ex.getMessage();
+                }
+                return msg;
+            }
+
+            @Override
+            protected void onPostExecute(String msg) {
+                if (!TextUtils.isEmpty(regId)) {
+                    new postRegID().execute();
+                } else {
+                    Log.d(TAG, "onPostExecute registerInBackground failed");
+                }
+            }
+        }.execute(null, null, null);
+    }
+
+    private class postRegID extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost(APP_SERVER_URL);
+            try {
+                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+                nameValuePairs.add(new BasicNameValuePair("regid", regId));
+                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                Log.d(TAG,"postRegID doinbackground");
+                HttpResponse response = httpclient.execute(httppost);
+            } catch (ClientProtocolException e) {
+                Log.d(TAG,"ClientProtocolException" + e.getMessage());
+            } catch (IOException e) {
+                Log.d(TAG,"IOException" + e.getMessage());
+            }
+
+            return null;
+        }
+
+        protected void onPostExecute(Void args) {
+            Log.d(TAG,"onPostExecute http sended");
+        }
+    }
+
+    private boolean checkPlayServices() {
+        int resultCode = GooglePlayServicesUtil
+                .isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+                GooglePlayServicesUtil.getErrorDialog(resultCode, this,
+                        PLAY_SERVICES_RESOLUTION_REQUEST).show();
+            } else {
+                Toast.makeText(
+                        context,
+                        "This device doesn't support Play services, App will not work normally",
+                        Toast.LENGTH_LONG).show();
+                finish();
+            }
+            return false;
+        } else {
+            Toast.makeText(
+                            context,
+                            "This device supports Play services, App will work normally",
+                            Toast.LENGTH_LONG).show();
+        }
+        return true;
     }
 
 }
