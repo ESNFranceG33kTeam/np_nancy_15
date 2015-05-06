@@ -67,9 +67,11 @@ public class OCFragment extends android.support.v4.app.ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int pos, long id) {
         super.onListItemClick(l, v, pos, id);
-        if (OCMembers.get(pos).getFirstName().equalsIgnoreCase("Florent")
-                && OCMembers.get(pos).getLastName().equalsIgnoreCase("Lenoir")){
+        if (OCMembers.get(pos).getFirstName().equalsIgnoreCase("Florent") && OCMembers.get(pos).getLastName().equalsIgnoreCase("Lenoir")){
             final MediaPlayer mp = MediaPlayer.create(getActivity(), R.raw.elephant);
+            mp.start();
+        }else if(OCMembers.get(pos).getFirstName().equalsIgnoreCase("Laura") && OCMembers.get(pos).getLastName().equalsIgnoreCase("Mazi")){
+            final MediaPlayer mp = MediaPlayer.create(getActivity(), R.raw.flush);
             mp.start();
         }
     }

@@ -9,9 +9,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
-import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
+
+import java.util.ArrayList;
 
 /**
  * Created by Spider on 26/01/15.
@@ -35,31 +36,30 @@ public class GcmIntentService extends IntentService {
         GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
 
         String messageType = gcm.getMessageType(intent);
-        String msg = String.valueOf(extras.get(MSG_KEY));
-        String sbj = String.valueOf(extras.get(SBJ_KEY));
-        String sound = String.valueOf(extras.get(SOUND_KEY));
-
-        Log.d("PUSH", "sound : " + sound);
 
         if (!extras.isEmpty()) {
+            ArrayList<String> data = new ArrayList<String>();
+            data.add(String.valueOf(extras.get(MSG_KEY)));
+            data.add(String.valueOf(extras.get(SBJ_KEY)));
+            data.add(String.valueOf(extras.get(SOUND_KEY)));
+
             if (GoogleCloudMessaging.MESSAGE_TYPE_SEND_ERROR
                     .equals(messageType)) {
-                sendNotification("Send error: ",  extras.toString(), sound);
+                sendNotification("Send error: ",  data);
             } else if (GoogleCloudMessaging.MESSAGE_TYPE_DELETED
                     .equals(messageType)) {
                 sendNotification("Deleted messages on server: ",
-                         extras.toString(), sound);
+                        data);
             } else if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE
                     .equals(messageType)) {
-                sendNotification(sbj, msg, sound);
+                sendNotification("Message", data);
             }
         }
         GcmBroadcastReceiver.completeWakefulIntent(intent);
     }
 
-    private void sendNotification(String sbj, String msg, String sound) {
+    private void sendNotification(String error, ArrayList<String> data) {
         Intent resultIntent = new Intent(this, SplashScreenActivity.class);
-        resultIntent.putExtra("title", msg);
 
         PendingIntent resultPendingIntent = PendingIntent.getActivity(this, 0,
                 resultIntent, PendingIntent.FLAG_ONE_SHOT);
@@ -70,8 +70,8 @@ public class GcmIntentService extends IntentService {
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         mNotifyBuilder = new NotificationCompat.Builder(this)
-                .setContentTitle(sbj)
-                .setContentText(msg)
+                .setContentTitle(data.get(0))
+                .setContentText(data.get(0))
                 .setSmallIcon(R.mipmap.ic_launcher);
 
         // Set pending intent
@@ -83,18 +83,34 @@ public class GcmIntentService extends IntentService {
         defaults = defaults | Notification.DEFAULT_VIBRATE;
 
         Uri uri = null;
-        if (sound.equalsIgnoreCase("elephant")) {
-            Log.d("PUSH", "url");
+
+
+        if (data.get(2).equalsIgnoreCase("elephant")) {
             uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.elephant);
             mNotifyBuilder.setSound(uri);
+        }
+        else if (data.get(2).equalsIgnoreCase("reveil")) {
+            uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.reveille);
+            mNotifyBuilder.setSound(uri);
+        }else if (data.get(2).equalsIgnoreCase("maison")) {
+            uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.maison);
+            mNotifyBuilder.setSound(uri);
+        }else if (data.get(2).equalsIgnoreCase("faispaschier")) {
+            uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.faispaschier);
+            mNotifyBuilder.setSound(uri);
+        }else if (data.get(2).equalsIgnoreCase("cyclisme")) {
+            uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.cyclisme);
+            mNotifyBuilder.setSound(uri);
+        }else if (data.get(2).equalsIgnoreCase("adrienne")) {
+            uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.adrienne);
+            mNotifyBuilder.setSound(uri);
         }else{
-            Log.d("PUSH", "default");
             defaults = defaults | Notification.DEFAULT_SOUND;
         }
         mNotifyBuilder.setDefaults(defaults);
 
         // Set the content for Notification
-        mNotifyBuilder.setContentText(msg);
+        mNotifyBuilder.setContentText(data.get(1));
         // Set autocancel
         mNotifyBuilder.setAutoCancel(true);
         // Post a notification

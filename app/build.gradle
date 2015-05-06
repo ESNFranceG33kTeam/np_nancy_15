@@ -8,8 +8,8 @@ android {
         applicationId "org.esn.geekteam.npnancy15"
         minSdkVersion 14
         targetSdkVersion 20
-        versionCode 4
-        versionName "0.30"
+        versionCode 5
+        versionName "0.40"
     }
     buildTypes {
         release {
