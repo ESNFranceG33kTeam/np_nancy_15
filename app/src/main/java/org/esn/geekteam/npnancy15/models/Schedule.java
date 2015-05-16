@@ -6,14 +6,28 @@ package org.esn.geekteam.npnancy15.models;
 public class Schedule {
     private String date;
     private String hour;
-    private String title;
-    private String address;
+    private String description;
+    private String type;
+    private String speaker;
+    private int backgroundColor;
+    private Place place;
 
-    public Schedule(String date, String hour, String title, String address) {
+    public Schedule(String date, String hour, String description, String type, String speaker, Place place) {
         this.date = date;
         this.hour = hour;
-        this.title = title;
-        this.address = address;
+        this.description = description;
+        this.type = type;
+        this.speaker = speaker;
+        this.place = place;
+    }
+
+    public Schedule(String date, String hour, String description, String type, String speaker, int backgroundColor) {
+        this.date = date;
+        this.hour = hour;
+        this.description = description;
+        this.type = type;
+        this.speaker = speaker;
+        this.backgroundColor = backgroundColor;
     }
 
     public String getDate() {
@@ -32,20 +46,44 @@ public class Schedule {
         this.hour = hour;
     }
 
-    public String getTitle() {
-        return title;
+    public String getDescription() {
+        return description;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getAddress() {
-        return address;
+    public String getType() {
+        return type;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getSpeaker() {
+        return speaker;
+    }
+
+    public void setSpeaker(String speaker) {
+        this.speaker = speaker;
+    }
+
+    public Place getPlace() {
+        return place;
+    }
+
+    public void setPlace(Place place) {
+        this.place = place;
+    }
+
+    public int getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public void setBackgroundColor(int backgroundColor) {
+        this.backgroundColor = backgroundColor;
     }
 
     @Override
@@ -53,8 +91,10 @@ public class Schedule {
         return "Schedule{" +
                 "date='" + date + '\'' +
                 ", hour='" + hour + '\'' +
-                ", title='" + title + '\'' +
-                ", address='" + address + '\'' +
+                ", description='" + description + '\'' +
+                ", type='" + type + '\'' +
+                ", speaker='" + speaker + '\'' +
+                ", place=" + place +
                 '}';
     }
 }
