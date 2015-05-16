@@ -1,38 +1,32 @@
 package org.esn.geekteam.npnancy15.activities;
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import org.esn.geekteam.npnancy15.R;
-import org.esn.geekteam.npnancy15.models.Tips;
+import org.esn.geekteam.npnancy15.fragments.DetailFragment;
 
 /**
  * Created by Spider on 08/05/15.
  */
 public class DetailFragmentActivity extends FragmentActivity{
 
-    private Tips tip;
-
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Bundle b = getIntent().getExtras();
-        tip = (Tips) b.getSerializable("tip");
-    }
+        setContentView(R.layout.activity_detail);
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_detail, null);
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransacton = fragmentManager.beginTransaction();
 
-        TextView title = (TextView) view.findViewById(R.id.detail_title);
-        TextView desc = (TextView) view.findViewById(R.id.detail_description);
+        DetailFragment detailFragment = new DetailFragment();
 
-        title.setText(tip.getTitle());
-        desc.setText(tip.getDescription());
+        Bundle b = new Bundle();
+        b.putSerializable("tip", getIntent().getSerializableExtra("tip"));
+        detailFragment.setArguments(b);
 
-        return view;
+        fragmentTransacton.add(R.id.details_fragment_container, detailFragment);
+        fragmentTransacton.commit();
     }
 }
