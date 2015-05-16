@@ -12,6 +12,8 @@ import android.support.v4.app.NotificationCompat;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
+import org.esn.geekteam.npnancy15.activities.SplashScreenActivity;
+
 import java.util.ArrayList;
 
 /**

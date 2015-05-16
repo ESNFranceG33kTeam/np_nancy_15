@@ -1,4 +1,4 @@
-package org.esn.geekteam.npnancy15;
+package org.esn.geekteam.npnancy15.activities;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -22,6 +21,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.esn.geekteam.npnancy15.R;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -63,13 +63,11 @@ public class SplashScreenActivity extends Activity {
     // GCM
     public void RegisterUser() {
         if (checkPlayServices()) {
-            Log.d(TAG, "RegisterUser : checkPlayServices OK");
             registerInBackground();
         }
     }
 
     private void registerInBackground() {
-        Log.d(TAG, "registerInBackgroud");
         new AsyncTask<Void, Void, String>() {
             @Override
             protected String doInBackground(Void... params) {
@@ -82,7 +80,6 @@ public class SplashScreenActivity extends Activity {
                     regId = gcmObj
                             .register(GOOGLE_PROJ_ID);
                     msg = "Registration ID :" + regId;
-                    Log.d(TAG, "regid : " + msg);
                 } catch (IOException ex) {
                     msg = "Error :" + ex.getMessage();
                 }
@@ -93,8 +90,6 @@ public class SplashScreenActivity extends Activity {
             protected void onPostExecute(String msg) {
                 if (!TextUtils.isEmpty(regId)) {
                     new postRegID().execute();
-                } else {
-                    Log.d(TAG, "onPostExecute registerInBackground failed");
                 }
             }
         }.execute(null, null, null);
@@ -110,7 +105,6 @@ public class SplashScreenActivity extends Activity {
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
                 nameValuePairs.add(new BasicNameValuePair("regid", regId));
                 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-                Log.d(TAG,"postRegID doinbackground");
                 HttpResponse response = httpclient.execute(httppost);
             } catch (ClientProtocolException e) {
                 Log.d(TAG,"ClientProtocolException" + e.getMessage());
@@ -134,18 +128,19 @@ public class SplashScreenActivity extends Activity {
                 GooglePlayServicesUtil.getErrorDialog(resultCode, this,
                         PLAY_SERVICES_RESOLUTION_REQUEST).show();
             } else {
-                Toast.makeText(
+                /*Toast.makeText(
                         context,
                         "This device doesn't support Play services, App will not work normally",
                         Toast.LENGTH_LONG).show();
+                        */
                 finish();
             }
             return false;
         } else {
-            Toast.makeText(
+            /*Toast.makeText(
                             context,
                             "This device supports Play services, App will work normally",
-                            Toast.LENGTH_LONG).show();
+                            Toast.LENGTH_LONG).show();*/
         }
         return true;
     }

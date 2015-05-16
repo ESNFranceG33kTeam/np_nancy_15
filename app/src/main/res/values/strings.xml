@@ -14,7 +14,7 @@
 
     <!-- ABOUT FRAGMENT -->
     <string name="about_title">NP Nancy 2015</string>
-    <string name="about_version">v0.30</string>
+    <string name="about_version">v0.42</string>
     <string name="about_author">©G33kteam</string>
     <string name="about_country">ESN France</string>
 </resources>

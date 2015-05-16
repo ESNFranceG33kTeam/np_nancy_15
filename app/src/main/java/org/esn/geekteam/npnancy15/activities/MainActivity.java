@@ -1,4 +1,4 @@
-package org.esn.geekteam.npnancy15;
+package org.esn.geekteam.npnancy15.activities;
 
 import android.app.ActionBar;
 import android.os.Bundle;
@@ -6,9 +6,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 
+import org.esn.geekteam.npnancy15.R;
 import org.esn.geekteam.npnancy15.fragments.MyFragmentPagerAdapter;
 
 
@@ -75,23 +74,6 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         tabAbout.setText(getResources().getString(R.string.tab_about));
         tabAbout.setTabListener(this);
         getActionBar().addTab(tabAbout);
-    }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     protected void onSaveInstanceState(Bundle outState) {
