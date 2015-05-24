@@ -1,6 +1,5 @@
 package org.esn.geekteam.npnancy15.fragments;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -20,13 +19,6 @@ public class AboutFragment extends Fragment{
         super.onCreate(savedInstanceState);
 
         ImageView iv = (ImageView) getActivity().findViewById(R.id.logo_geekteam);
-        iv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final MediaPlayer mp = MediaPlayer.create(getActivity(), R.raw.maison);
-                mp.start();
-            }
-        });
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -48,6 +48,7 @@ public class OCFragment extends android.support.v4.app.ListFragment {
         this.OCMembers.add(new OCMember("Mylene", "Fohrer", "0683441546", "Responsable hébergement"));
         this.OCMembers.add(new OCMember("Marion", "Rusterholtz", "0673441739", "Responsable nourriture"));
         this.OCMembers.add(new OCMember("Marion", "Geille", " 0750930624", "Responsable soirée"));
+        this.OCMembers.add(new OCMember("Emma", "Mirgain", "", "Communication"));
         this.OCMembers.add(new OCMember("Florent", "Lenoir", "0607895144", "Chair"));
         this.OCMembers.add(new OCMember("Laura", "Mazi", "0613303219", "Vice-Chair"));
     }
