@@ -58,9 +58,9 @@ public class TipsFragment extends android.support.v4.app.ListFragment {
     public void initTips(){
         tips = new ArrayList<Tips>();
         tips.add(new Tips("HashTag", "#NPNancy2015, #ESNfrenchtouch"));
-        tips.add(new Tips("Taxi", "Lorem Ipsum Dolor"));
-        tips.add(new Tips("Bus", "Lorem Ipsum Dolor"));
-        tips.add(new Tips("Police Station", "Lorem Ipsum Dolor"));
+        tips.add(new Tips("Police", "17"));
+        tips.add(new Tips("Pompier", "18"));
+        tips.add(new Tips("SAMU", "15"));
     }
 
     class CustomListAdapter extends BaseAdapter {
